@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>The Flavor House | Restaurant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --primary: #d35400;
+      --secondary: #2c3e50;
+      --light: #f4f4f4;
+      --dark: #222;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--light);
+      color: var(--secondary);
+    }
+
+    header {
+      background: var(--primary);
+      color: #fff;
+      padding: 16px 32px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1 1 auto;
+      min-width: 220px;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+    }
+
+    .logo-text {
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+    }
+
+    nav {
+      display: flex;
+      flex: 2 1 400px;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.03rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: #212f3d;
+    }
+
+    nav a .icon {
+      font-size: 1.2rem;
+    }
+
+    .search-bar {
+      flex: 1 1 300px;
+      display: flex;
+      justify-content: flex-end;
+      min-width: 200px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      max-width: 320px;
+      padding: 10px 15px;
+      border-radius: 20px;
+      border: none;
+      font-size: 1rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      outline: none;
+      transition: box-shadow 0.3s;
+    }
+
+    .search-bar input:focus {
+      box-shadow: 0 2px 20px rgba(211, 84, 0, 0.8);
+    }
+
+    @media (max-width: 700px) {
+      header {
+        justify-content: center;
+        padding: 16px 12px;
+      }
+
+      .logo-text {
+        font-size: 1.4rem;
+      }
+
+      nav {
+        flex: 1 1 100%;
+        order: 2;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 8px;
+      }
+
+      .search-bar {
+        flex: 1 1 100%;
+        order: 3;
+        margin-top: 10px;
+        justify-content: center;
+      }
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1100&q=80') center/cover no-repeat;
+      color: #fff;
+      padding: 90px 32px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      margin: 0 0 12px 0;
+      font-size: 2.3rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1rem;
+      margin-top: 8px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background: #e67e22;
+    }
+
+    section {
+      padding: 60px 20px 20px 20px;
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+      margin-top: 32px;
+    }
+
+    section h3 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 30px;
+      color: var(--primary);
+    }
+
+    .about,
+    .contact {
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .menu-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px;
+      justify-content: center;
+    }
+
+    .menu-item {
+      background: var(--light);
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+      min-width: 210px;
+      max-width: 270px;
+      flex: 1;
+      transition: background 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .menu-item img {
+      width: 100%;
+      max-width: 180px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    }
+
+    .menu-item h4 {
+      margin: 0 0 6px 0;
+      color: var(--secondary);
+    }
+
+    .menu-item p {
+      margin: 0 0 10px 0;
+      color: #555;
+      text-align: center;
+    }
+
+    .menu-item .price {
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.06rem;
+      margin-bottom: 5px;
+    }
+
+    @media (max-width: 820px) {
+      .menu-list {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      section {
+        margin-top: 24px;
+      }
+
+      .menu-item img {
+        max-width: 100%;
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Logo" class="logo" />
+      <div class="logo-text">The Flavor House</div>
+    </div>
+    <nav>
+      <a href="#food"><span class="icon">🍔</span> Food</a>
+      <a href="#contact"><span class="icon">📞</span> Contact</a>
+      <a href="#order"><span class="icon">🛒</span> Order</a>
+      <a href="#pay"><span class="icon">💳</span> Pay</a>
+      <a href="#gifts"><span class="icon">🎁</span> Gifts</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" placeholder="Search item..........." />
+    </div>
+  </header>
+  <div class="hero">
+    <h2>Welcome to The Flavor House</h2>
+    <p>Serving you the finest dishes in the city, where every meal is a celebration.</p>
+    <a href="#menu" class="btn">View Menu</a>
+  </div>
+  <section id="about" class="about">
+    <h3>About Us</h3>
+    <p>
+      At The Flavor House, we blend traditional recipes with modern flair.<br />
+      Our chefs use the freshest ingredients to create dishes you'll love.<br />
+      Join us for an unforgettable dining experience!
+    </p>
+  </section>
+  <section id="menu">
+    <h3>Our Menu</h3>
+    <div class="menu-list">
+      <div class="menu-item">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80"
+          alt="Grilled Salmon" />
+        <h4>Grilled Salmon</h4>
+        <p>Fresh Atlantic salmon fillet grilled to perfection, served with vegetables.</p>
+        <div class="price">$16</div>
+      </div>
+      <div class="menu-item">
+        <img src="https://i.pinimg.com/1200x/9d/2f/62/9d2f62b46c1a23bd26df0d455c3a388f.jpg" alt="Margherita Pizza" />
+        <h4>Classic Margherita Pizza</h4>
+        <p>Stone-baked thin crust, house tomato sauce, mozzarella, sweet basil.</p>
+        <div class="price">$13</div>
+      </div>
+      <div class="menu-item">
+        <img src="https://i.pinimg.com/1200x/35/dc/f3/35dcf3694d4448fee4817a9bbadf9f06.jpg" alt="Garden Salad" />
+        <h4>Garden Salad</h4>
+        <p>A mix of greens, tomatoes, cucumbers, olives, feta, lemon-olive oil dressing.</p>
+        <div class="price">$9</div>
+      </div>
+      <div class="menu-item">
+        <img src="https://i.pinimg.com/1200x/0c/e1/4e/0ce14e1ef631166a411c20a62f32618f.jpg" alt="Chocolate Lava Cake" />
+        <h4>Chocolate Lava Cake</h4>
+        <p>Warm chocolate cake with gooey center, served with vanilla ice cream.</p>
+        <div class="price">$7</div>
+      </div>
+      <div class="menu-item">
+        <img src="https://i.pinimg.com/1200x/a2/26/07/a226076c1498919907ff9596acfb0874.jpg" alt="Spaghetti Carbonara" />
+        <h4>Spaghetti Carbonara</h4>
+        <p>Classic Italian pasta with creamy egg sauce and pancetta.</p>
+        <div class="price">$14</div>
+      </div>
+      <div class="menu-item">
+        <img src="https://i.pinimg.com/736x/7b/7a/4a/7b7a4ad672b6146c6c278cf6c596e3da.jpg" alt="French Fries" />
+        <h4>Crispy French Fries</h4>
+        <p>Golden crispy fries, lightly salted and served with house ketchup.</p>
+        <div class="price">$5</div>
+      </div>
+      <div class="menu-item">
+        <img src="https://i.pinimg.com/1200x/6d/3d/6f/6d3d6f1d14f4953d25e8ae62ab3307d3.jpg" alt="Steak" />
+        <h4>Grilled Ribeye Steak</h4>
+        <p>Juicy ribeye cooked to order with garlic butter and herbs.</p>
+        <div class="price">$22</div>
+      </div>
+      <div class="menu-item">
+        <img src="https://i.pinimg.com/1200x/58/4f/43/584f430dd54f19fd2a36e1391fcf7507.jpg" alt="Caesar Salad" />
+        <h4>Caesar Salad</h4>
+        <p>Crisp romaine with creamy Caesar dressing, croutons, and parmesan.</p>
+        <div class="price">$10</div>
+      </div>
+      <div class="menu-item">
+        <img src="https://i.pinimg.com/736x/29/59/1f/29591f5c535e6dcad403fbac6d3562e4.jpg" alt="Tacos" />
+        <h4>Chicken Tacos</h4>
+        <p>Soft tortillas filled with spiced chicken, lettuce, and salsa.</p>
+        <div class="price">$11</div>
+      </div>
+      <div class="menu-item">
+        <img src="https://i.pinimg.com/736x/f9/b8/b9/f9b8b92a914c294261acc889d48c999c.jpg" alt="Pancakes" />
+        <h4>Fluffy Pancakes</h4>
+        <p>Stack of pancakes served with maple syrup and fresh berries.</p>
+        <div class="price">$8</div>
+      </div>
+      <div class="menu-item">
+        <img src="https://i.pinimg.com/736x/e2/c9/5e/e2c95e449a59542a0399c13c86eb66c2.jpg" alt="Burger" />
+        <h4>Classic Cheeseburger</h4>
+        <p>Grilled beef patty, cheddar cheese, lettuce, tomato, and house sauce.</p>
+        <div class="price">$12</div>
+      </div>
+      <div class="menu-item">
+        <img src="https://i.pinimg.com/736x/5c/08/aa/5c08aa5b9ed167892ae492efd1b6f1df.jpg" alt="Soup" />
+        <h4>Tomato Basil Soup</h4>
+        <p>Rich and creamy tomato soup with fresh basil and croutons.</p>
+        <div class="price">$7</div>
+      </div>
+    </div>
+  </section>
+  <section id="contact" class="contact">
+    <h3>Contact & Location</h3>
+    <p>
+      <span style="vertical-align: middle; display: inline-flex; margin-right: 8px;">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 24 24" fill="#d35400">
+          <path
+            d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" />
+        </svg>
+      </span>
+      123 Main Street, Islampur<br />
+      Call us: 9382143533 <br />
+      Email: info@flavorhouse.com</p>
+    <p>Open: Mon-Sun 11:00am – 10:00pm</p>
+  </section>
